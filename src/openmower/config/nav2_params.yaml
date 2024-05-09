@@ -238,15 +238,20 @@ global_costmap:
       track_unknown_space: true
       plugins:
       - static_layer
-#      - obstacle_layer
+      - obstacle_layer
 #      - inflation_layer
-#      obstacle_layer:
-#        plugin: "nav2_costmap_2d::ObstacleLayer"
-#        enabled: True
-#        observation_sources: pointcloud
-#        pointcloud:
-#          topic: /camera/depth/color/points
-#          data_type: "PointCloud2"
+      obstacle_layer:
+        plugin: “nav2_costmap_2d::ObstacleLayer”
+        enabled: True
+        observation_sources: scan
+        scan:
+        topic: /scan
+        max_obstacle_height: 2.0
+        clearing: True
+        marking: True
+        data_type: “LaserScan”
+        # observation_persistence: 0.3
+        expected_update_rate: 1.0
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True

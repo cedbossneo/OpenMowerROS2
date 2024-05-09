@@ -45,6 +45,13 @@ def generate_launch_description():
         convert_types=True)
 
     localization_params_path = os.path.join(package_path, 'config', 'robot_localization.yaml')
+    
+    tf2_static_tfp = Node(
+            package='tf2_ros',
+            namespace = 'scan_to_map',
+            executable='static_transform_publisher',
+            arguments= ["0", "0", "0", "0", "0", "0", "map", "scan"]
+    )
 
     return LaunchDescription([
         # Set env var to print messages to stdout immediately
@@ -124,4 +131,5 @@ def generate_launch_description():
                 ('imu', 'gps/orientation'),
             ],
         ),
+        #tf2_static_tfp
     ])

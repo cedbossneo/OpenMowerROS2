@@ -79,6 +79,7 @@ def generate_launch_description():
             '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
             '/gps/fix@sensor_msgs/msg/NavSatFix[ignition.msgs.NavSat',
             '/imu/data_raw@sensor_msgs/msg/Imu[ignition.msgs.IMU',
+            '/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
         ],
         output='screen'
     )
@@ -103,6 +104,13 @@ def generate_launch_description():
         }.items(),
     )
 
+    lidar = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([get_package_share_directory("openmower"), '/launch/online_async_launch.py']),
+        launch_arguments={
+            'use_sim_time': 'true',
+        }.items()
+    )
+    
     foxglove_bridge = IncludeLaunchDescription(
         XMLLaunchDescriptionSource(
             [get_package_share_directory("foxglove_bridge"), '/launch/foxglove_bridge_launch.xml']),
@@ -138,6 +146,6 @@ def generate_launch_description():
         ),
         gz_spawn_entity,
         localization,
-        # nav2,
+        lidar,
         foxglove_bridge,
     ])

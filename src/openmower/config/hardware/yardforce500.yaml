@@ -51,6 +51,10 @@ gps:
   antenna:
     # x, y, z offset in m of gps antenna from center of base_link
     offset: [0.32, 0.0, 0.1]
+lidar:
+  sensor:
+    # x, y, z offset in m of gps antenna from center of base_link
+    offset: [0.32, 0.0, 0.2]
 
 imu:
   chip:
