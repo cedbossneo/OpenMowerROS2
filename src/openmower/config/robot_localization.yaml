@@ -1,12 +1,15 @@
 ekf_se_odom:
   ros__parameters:
-    frequency: 30.0
+    frequency: 50.0
     sensor_timeout: 0.1
     two_d_mode: true
     transform_time_offset: 0.0
     transform_timeout: 0.0
     print_diagnostics: true
     debug: false
+    publish_tf: true
+    publish_acceleration: false
+    reset_on_time_jump: true
 
     map_frame: map
     odom_frame: odom
@@ -78,7 +81,7 @@ ekf_se_odom:
 
 ekf_se_map:
   ros__parameters:
-    frequency: 10.0
+    frequency: 50.0
     sensor_timeout: 0.1
     two_d_mode: true
     transform_time_offset: 0.0
@@ -119,7 +122,7 @@ ekf_se_map:
     odom1_nodelay: true
     odom1_differential: false
     odom1_relative: false
-
+    
     imu0: imu/data
     imu0_config: [false, false, false,
                   true,  true,  false,
@@ -168,7 +171,7 @@ ekf_se_map:
 
 navsat_transform_node:
   ros__parameters:
-    frequency: 30.0
+    frequency: 50.0
     delay: 3.0
     zero_altitude: true
     publish_filtered_gps: true

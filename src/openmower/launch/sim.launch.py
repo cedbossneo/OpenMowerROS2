@@ -147,5 +147,6 @@ def generate_launch_description():
         gz_spawn_entity,
         localization,
         lidar,
+        nav2,
         foxglove_bridge,
     ])

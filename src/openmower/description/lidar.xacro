@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lidar">
     <joint name="lidar_joint" type="fixed">
-        <parent link="chassis"/>
+        <parent link="base_link"/>
         <child link="scan"/>
          <origin xyz="${robot['lidar']['sensor']['offset'][0]} ${robot['lidar']['sensor']['offset'][1]} ${robot['lidar']['sensor']['offset'][2]}" rpy="0 0 0"/>
   </joint>
@@ -10,13 +10,13 @@
     </link>
 
     <gazebo reference="scan">
-        <frame name="scan_frame" attached_to='chassis'>
+        <frame name="scan_frame" attached_to='base_link'>
             <pose relative_to='lidar_joint'>0 0 0 0 0 0</pose>
         </frame>
         <sensor name='scan' type='gpu_lidar'>"
             <pose relative_to='scan_frame'>0 0 0 0 0 0</pose>
             <topic>scan</topic>
-            <update_rate>10</update_rate>
+            <update_rate>20</update_rate>
             <lidar>
                 <scan>
                     <horizontal>
